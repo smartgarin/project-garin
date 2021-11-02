@@ -1,8 +1,8 @@
 import express from "express";
-// 서버 리스닝
 
 const app = express();
 
+// 서버 리스닝
 const port = process.env.PORT || 5000;
 
 const HandleListening = () => {
@@ -10,3 +10,7 @@ const HandleListening = () => {
 };
 
 app.listen(port, HandleListening);
+
+app.get("/home", (req, res) => {
+	res.send("test");
+});
