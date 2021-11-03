@@ -1,14 +1,16 @@
-//const express = require("express");
 import express from "express";
+import api from "./routers/index";
+
+//import cors from "cors";
 
 //import connectDB from "./db";
 
 const app = express();
 //connectDB();
 
-app.get("/", (req, res) => {
-	res.send("node.js 서버 동작 중");
-});
+//app.use(cors());
+app.use("/api", api);
+
 
 // 서버 리스닝
 const port = process.env.PORT || 5000;
