@@ -11,7 +11,6 @@ const app = express();
 //app.use(cors());
 app.use("/api", api);
 
-
 // 서버 리스닝
 const port = process.env.PORT || 5000;
 
