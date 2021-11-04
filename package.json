@@ -2,7 +2,7 @@
   "scripts": {
     "server": "cd server && nodemon --exec babel-node server.js",
     "client": "cd client && npm start",
-    "start": "concurrently --kill-others-on-fail \"npm server\" \"npm client\""
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "dependencies": {
     "concurrently": "^6.3.0",
