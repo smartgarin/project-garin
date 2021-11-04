@@ -10,7 +10,7 @@ const app = express();
 
 //app.use(cors());
 app.use("/api", api);
-
+app.get("/", (req, res) => res.send("node server가 작동중입니다."));
 // 서버 리스닝
 const port = process.env.PORT || 5000;
 
