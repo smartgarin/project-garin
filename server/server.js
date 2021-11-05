@@ -4,7 +4,7 @@ import api from "./routers/index";
 import connectDB from "./db";
 
 const app = express();
-//connectDB();
+connectDB();
 
 app.use("/api", api);
 app.get("/", (req, res) => res.send("node server가 작동중입니다."));
