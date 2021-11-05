@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
-import config from "./config/key";
 
-const mongoURI = config.mongoURI;
+const mongoURI = "mongodb://yt4307.iptime.org:27017";
 
 const connectDB = () => {
 	mongoose

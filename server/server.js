@@ -1,7 +1,7 @@
 import express from "express";
 
 import api from "./routers/index";
-//import connectDB from "./db";
+import connectDB from "./db";
 
 const app = express();
 //connectDB();
