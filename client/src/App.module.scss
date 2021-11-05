@@ -1,0 +1,35 @@
+.App {
+	text-align: center;
+}
+
+.topMenu {
+	display: flex;
+	margin-left: 30em;
+	margin-right: 30em;
+	.left {
+		padding: 1em;
+		border: 1px solid #2980B9;
+		width: 50%;
+	}
+	.right {
+		padding: 1em;
+		border: 1px solid #2980B9;
+		flex-grow: 1;
+	}
+}
+
+.menu {
+	border: 1px solid #2980B9;
+	border-radius: 3px;
+	padding: 1em;
+	margin-left: 30em;
+	margin-right: 30em;
+
+	span {
+		border: 1px solid #2980B9;
+		border-radius: 3px;
+		padding: 1em;
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
