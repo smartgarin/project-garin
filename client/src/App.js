@@ -15,7 +15,7 @@ const App = () => {
     <div className={style.App}>
       <div><h1>가린</h1></div>
       <div>
-        
+
         <div className={style.topMenu}>
           <span className={style.left}>사용자등록</span>
           <span className={style.right}>로그인</span>
