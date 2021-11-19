@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
-import SR from "./model/speaker_recognition";
 
 const mongoURI = "mongodb://yt4307.iptime.org:27017";
 
 const connectDB = () => {
 	mongoose
 		.connect(mongoURI, {
+			dbName: "garin",
 			ignoreUndefined: true,
 		})
 		.then(() => console.log("mongoDB connected"))
