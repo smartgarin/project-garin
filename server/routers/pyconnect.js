@@ -4,10 +4,10 @@ const router = express.Router();
 
 router.post("/", (req, res, next) => {
     // if (req.body.input)
-	//     res.json({ input: true });
+    //     res.json({ input: true });
     // else
-	// 	next(err);
-    
+    // 	next(err);
+
     res.json({ input: true });
 });
 

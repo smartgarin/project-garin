@@ -7,7 +7,9 @@
   "dependencies": {
     "concurrently": "^6.3.0",
     "express": "^4.17.1",
-    "mongoose": "^6.0.12"
+    "https": "^1.0.0",
+    "mongoose": "^6.0.12",
+    "multer": "^1.4.3"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

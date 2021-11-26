@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import axios from "axios";
 
 const AudioRecord = () => {
 	const [stream, setStream] = useState();
@@ -31,8 +32,8 @@ const AudioRecord = () => {
 			makeSound(stream);
 
 			analyser.onaudioprocess = function (e) {
-				// 3분(180초) 지나면 자동으로 음성 저장 및 녹음 중지
-				if (e.playbackTime > 180) {
+				// 10초 지나면 자동으로 음성 저장 및 녹음 중지
+				if (e.playbackTime > 10) {
 					stream.getAudioTracks().forEach(function (track) {
 						track.stop();
 					});
@@ -72,19 +73,54 @@ const AudioRecord = () => {
 		source.disconnect();
 	};
 
-	const onSubmitAudioFile = useCallback(() => {
+	const BASE_URL = "https://garin.r-e.kr";
+
+	const [content, setContent] = useState("");
+
+	const onChange = e => {
+		setContent(e.target.files[0]);
+	};
+	
+	const onSubmit = e => {
+		e.preventDefault();
+		const formData = new FormData();
+		formData.append("file", content);
+		axios
+			.post("/api/uploads", formData, { header: { "Content-Type": "multipart/form-data" } })
+			.then(res => {
+				const { fileName } = res.data;
+				console.log(fileName);
+				console.log("파일 저장 성공");
+			})
+			.catch(err => {
+				console.error(err);
+			});
+	};
+
+
+	const onSubmitAudioFile = useCallback((e) => {
+		e.preventDefault();
 		if (audioUrl) {
 			console.log(URL.createObjectURL(audioUrl)); // 출력된 링크에서 녹음된 오디오 확인 가능
 		}
 		// File 생성자를 사용해 파일로 변환
 		const sound = new File([audioUrl], "soundBlob", { lastModified: new Date().getTime(), type: "audio" });
 		console.log(sound); // File 정보 출력
+
 	}, [audioUrl]);
+
+
 
 	return (
 		<>
 			<button onClick={onRec ? onRecAudio : offRecAudio}>녹음</button>
 			<button onClick={onSubmitAudioFile}>결과 확인</button>
+
+			<form onSubmit={onSubmit}>
+				<input type="file" onChange={onChange} />
+				<button type="submit">Upload</button>
+			</form>
+
 		</>
 	);
 };

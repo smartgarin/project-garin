@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import MainPage from "./view/MainPage/MainPage";
 import AudioRecord from "./view/AudioRecord/AudioRecord";
+
 import styles from "./App.module.scss";
 
 const App = () => {
