@@ -73,30 +73,6 @@ const AudioRecord = () => {
 		source.disconnect();
 	};
 
-	const BASE_URL = "https://garin.r-e.kr";
-
-	const [content, setContent] = useState("");
-
-	const onChange = e => {
-		setContent(e.target.files[0]);
-	};
-	
-	const onSubmit = e => {
-		e.preventDefault();
-		const formData = new FormData();
-		formData.append("file", content);
-		axios
-			.post("/api/uploads", formData, { header: { "Content-Type": "multipart/form-data" } })
-			.then(res => {
-				const { fileName } = res.data;
-				console.log(fileName);
-				console.log("파일 저장 성공");
-			})
-			.catch(err => {
-				console.error(err);
-			});
-	};
-
 
 	const onSubmitAudioFile = useCallback((e) => {
 		e.preventDefault();
@@ -107,6 +83,20 @@ const AudioRecord = () => {
 		const sound = new File([audioUrl], "soundBlob", { lastModified: new Date().getTime(), type: "audio" });
 		console.log(sound); // File 정보 출력
 
+
+		e.preventDefault();
+		const formData = new FormData();
+		formData.append("file", sound);
+		axios
+			.post("/api/uploads", formData, { header: { "Content-Type": "multipart/form-data" } })
+			.then(() => {
+				console.log("파일 저장 성공");
+			})
+			.catch(err => {
+				console.error(err);
+			});
+
+
 	}, [audioUrl]);
 
 
@@ -116,10 +106,9 @@ const AudioRecord = () => {
 			<button onClick={onRec ? onRecAudio : offRecAudio}>녹음</button>
 			<button onClick={onSubmitAudioFile}>결과 확인</button>
 
-			<form onSubmit={onSubmit}>
-				<input type="file" onChange={onChange} />
+			{/* <form onSubmit={onSubmitAudioFile}>
 				<button type="submit">Upload</button>
-			</form>
+			</form> */}
 
 		</>
 	);
